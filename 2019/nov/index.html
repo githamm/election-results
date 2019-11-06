@@ -51,7 +51,12 @@
         var dpsBoardAtLarge,
             dpsBoardDistrict1,
             dpsBoardDistrict5,
-            auroraMayor;
+            auroraMayor,
+            lakewoodMayor,
+            broomfieldMayor,
+            brightonMayor,
+            jeffcoBallotIssue,
+            arapahoeBallotIssue;
 
         var len = json.feed.entry.length;
 
@@ -150,20 +155,112 @@
             json.feed.entry[4].gsx$auroramayorname.$t +
             '</td><td width="20%">' +
             json.feed.entry[4].gsx$auroramayorvote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[5].gsx$auroramayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[5].gsx$auroramayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[5].gsx$auroramayorvote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        lakewoodMayor = [
+            '<h2 class="race-title">Lakewood Mayor</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$lakewoodmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$lakewoodmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$lakewoodmayorvote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$lakewoodmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$lakewoodmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$lakewoodmayorvote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        broomfieldMayor = [
+            '<h2 class="race-title">Broomfield Mayor</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$broomfieldmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$broomfieldmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$broomfieldmayorvote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$broomfieldmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$broomfieldmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$broomfieldmayorvote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[2].gsx$broomfieldmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[2].gsx$broomfieldmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[2].gsx$broomfieldmayorvote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        brightonMayor = [
+            '<h2 class="race-title">Brighton Mayor Recall</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$brightonmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$brightonmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$brightonmayorvote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$brightonmayorpct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$brightonmayorname.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$brightonmayorvote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        jeffcoBallotIssue = [
+            '<h2 class="race-title">Jeffco Ballot Issue 1A - TABOR</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$jeffcoballotissuepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$jeffcoballotissuename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$jeffcoballotissuevote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$jeffcoballotissuepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$jeffcoballotissuename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$jeffcoballotissuevote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        arapahoeBallotIssue = [
+            '<h2 class="race-title">Arapahoe County Ballot Issue 1A - Jail</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$arapahoeballotissuepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$arapahoeballotissuename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$arapahoeballotissuevote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$arapahoeballotissuepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$arapahoeballotissuename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$arapahoeballotissuevote.$t +
             '</td></tr></tbody></table>'
         ];
 
         //     document.getElementById('results-table').innerHTML = '<p style="margin-bottom:5px;font-style:italic">Updated at ' + json.feed.entry[0].gsx$updated.$t + '</p><p style="font-style:italic;font-weight:bold;margin-bottom:-5px">&#10004; denotes winner | * denotes incumbent</p><hr>' + dpsBoardAtLarge + dpsBoardDistrict1 + dpsBoardDistrict5 + auroraMayor
         // }
 
-        document.getElementById('results-table').innerHTML = dpsBoardAtLarge + dpsBoardDistrict1 + dpsBoardDistrict5 + auroraMayor
+        document.getElementById('results-table').innerHTML = dpsBoardAtLarge + dpsBoardDistrict1 + dpsBoardDistrict5 + auroraMayor + brightonMayor + broomfieldMayor + lakewoodMayor+ arapahoeBallotIssue + jeffcoBallotIssue
     }
     </script>
 </head>
 
 <body>
     <div class="row">
-        <div class="large-6 large-centered medium-6 medium-centered columns">
+        <div class="large-12 columns">
             <!-- <input type="button" class="button large expanded" value="Tap to refresh results" onClick="window.location.reload()"> -->
             <div id="results-table">
                 <script src="https://spreadsheets.google.com/feeds/list/1tBfyFmG_BUhlgEfTcgdSvVjECfBsgsg6P3_RDmiAmLE/od6/public/values?alt=json-in-script&amp;callback=displayContent " type="text/javascript "></script>

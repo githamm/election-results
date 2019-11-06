@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>November 2019 Election Results: Denver Public Schools Board</title>
+    <link rel="shortcut icon" href="https://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:700|Roboto+Mono" rel="stylesheet">
+    <meta name="robots" content="index, nofollow" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
+    <script src="https://extras.denverpost.com/foundation/js/vendor/jquery.js "></script>
+    <script src="https://extras.denverpost.com/foundation/js/vendor/modernizr.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+        }
+        table {
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .race-title {
+            font-size: 1.5rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            line-height: 25px;
+        }
+
+        /*.button {
+            width: 100%;
+        }*/
+    </style>
+    <script type='text/javascript'>
+    //Write a function that allows us to add commas to raw numbers in spreadsheet for display.  2413 becomes 2,413.
+    function addCommas(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    }
+
+    function displayContent(json) {
+
+        var dpsBoardAtLarge,
+            dpsBoardDistrict1,
+            dpsBoardDistrict5
+
+        var len = json.feed.entry.length;
+
+        // .gsxeverythinghereislowercase
+        dpsBoardAtLarge = [
+            '<h2 class="race-title">Denver Public Schools Director At-Large</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboardatlargepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$dpsboardatlargename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboardatlargevote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboardatlargepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$dpsboardatlargename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboardatlargevote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboardatlargepct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[2].gsx$dpsboardatlargename.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboardatlargevote.$t +
+            '</td></tr></tbody></table>'
+        ];
+        dpsBoardDistrict1 = [
+            '<h2 class="race-title">Denver Public Schools Director District 1</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict1pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict1name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict1vote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict1pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict1name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict1vote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict1pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict1name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict1vote.$t +
+            '</td></tr></tbody></table>'
+        ];
+        dpsBoardDistrict5 = [
+            '<h2 class="race-title">Denver Public Schools Director District 5</h2><table id="denver-election-results"><tbody><tr><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict5pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict5name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[0].gsx$dpsboarddistrict5vote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict5pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict5name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[1].gsx$dpsboarddistrict5vote.$t +
+            '</td></tr><tr><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict5pct.$t +
+            '%</td><td width="60%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict5name.$t +
+            '</td><td width="20%">' +
+            json.feed.entry[2].gsx$dpsboarddistrict5vote.$t +
+            '</td></tr></tbody></table>'
+        ];
+
+        document.getElementById('results-table').innerHTML = '<p style="margin-bottom:5px;font-style:italic">Updated at ' + json.feed.entry[0].gsx$updated.$t + '</p><p style="font-style:italic;font-weight:bold;margin-bottom:-5px">&#10004; denotes winner</p><hr>' + dpsBoardAtLarge + dpsBoardDistrict1 + dpsBoardDistrict5
+    }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="large-12 columns">
+            <!-- <input type="button" class="button large expanded" value="Tap to refresh results" onClick="window.location.reload()"> -->
+            <div id="results-table">
+                <script src="https://spreadsheets.google.com/feeds/list/1tBfyFmG_BUhlgEfTcgdSvVjECfBsgsg6P3_RDmiAmLE/od6/public/values?alt=json-in-script&amp;callback=displayContent " type="text/javascript "></script>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).foundation();
+    </script>
+    <footer>
+    </footer>
+</body>
+
+</html>

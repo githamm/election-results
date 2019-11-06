@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" results-table="width=device-width, initial-scale=1.0" />
+    <title>November 2019 Selected Election Results</title>
+    <meta name="robots" results-table="index, nofollow" />
+    <link rel="shortcut icon" href="https://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:700|Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.2/tabletop.min.js"></script>
+    <script src="https://extras.denverpost.com/foundation/js/vendor/jquery.js "></script>
+    <script src="https://extras.denverpost.com/foundation/js/vendor/modernizr.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <style>
+        body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #fafafa;
+    }
+
+    table {
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .race-title {
+        font-size: 1.5rem;
+        font-family: 'Roboto Condensed', sans-serif;
+        line-height: 25px;
+    }
+
+    /*.button {
+            width: 100%;
+        }*/
+      </style>
+</head>
+
+<body>
+    <h2>Handlebars template to populate a table</h2>
+    <h3>People</h3>
+    <div id="people"></div>
+    <h3>Smart Phones</h3>
+    <div id="smartphones"></div>
+    <!-- The script element is used to define the Handlebars template -->
+    <script type="text/x-handlebars-template" id="tableTemplate">
+        <table>
+          <thead>
+            <tr>
+              {{#each array.[0]}}
+                <th>{{@key}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each array}}
+              <tr>
+                {{#each this}}
+                  <td>{{this}}</td>
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+</script>
+    <div style="position: absolute;bottom: 5px;">
+        Read about this Fiddle at: <a href="http://jsdev.wikidot.com/howto:12" target="_blank">How To: Handlebars - Create Table element</a>
+    </div>
+    <script>
+    // From https://jsfiddle.net/jddevight/v96tka9p/
+    $(function() {
+        // Get the text for the Handlebars template from the script element.
+        var templateText = $("#tableTemplate").html();
+
+        // Compile the Handlebars template.
+        var tableTemplate = Handlebars.compile(templateText);
+
+        // Define an array of people.
+        var people = [
+            { "Id": 1, "First Name": "Anthony", "Last Name": "Nelson", "Age": 25 },
+            { "Id": 2, "First Name": "Helen", "Last Name": "Garcia", "Age": 32 },
+            { "Id": 3, "First Name": "John", "Last Name": "Williams", "Age": 48 }
+        ];
+
+        // Evaluate the template with an array of people and set the HTML
+        // for the people table.
+        $("#people").html(tableTemplate({ array: people }));
+
+        // Deine an array of smart phones.
+        var smartPhones = [
+            { "Manufacturer": "Apple", "Phone": "iPhone", "Operating System": "iOS" },
+            { "Manufacturer": "Samsung", "Phone": "Galaxy", "Operating System": "Android" },
+            { "Manufacturer": "Nokia", "Phone": "Lumia", "Operating System": "Windows" }
+        ];
+
+        // Evaluate the same table template with an array of smart phoes and set the HTML
+        // for the smartphones table.
+        $("#smartphones").html(tableTemplate({ array: smartPhones }));
+    });
+    </script>
+    <!-- <body>
+    <div class="row">
+        <div class="large-6 large-centered medium-6 medium-centered columns">
+            <table id="results-table">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script id="cat-template" type="text/x-handlebars-template">
+        {{#table}}
+        {{dps_at_large_pct}}
+        {{dps_at_large_name}}
+        {{dps_at_large_vote}}
+        {{/table}}
+    </script> -->
+    <script type="text/javascript">
+    // var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1tBfyFmG_BUhlgEfTcgdSvVjECfBsgsg6P3_RDmiAmLE&output=html';
+
+    // $(document).ready(function() {
+    //         Tabletop.init({
+    //                 key: public_spreadsheet_url,
+    //                 callback: showInfo,
+    //                 parseNumbers: true
+    //             }
+
+    //         );
+    //     }
+
+    // );
+
+    // function showInfo(data, tabletop) {
+    //     var source = $("#cat-template").html();
+    //     var template = Handlebars.compile(source);
+
+    //     $.each(tabletop.sheets("Cats").all(), function(i, cat) {
+    //             var html = template(cat);
+    //             $("#results-table").append(html);
+    //         }
+
+    //     );
+    // }
+    </script>
+    <script>
+    $(document).foundation();
+    </script>
+</body>
+
+</html>
